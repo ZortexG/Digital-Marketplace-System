@@ -16,7 +16,7 @@ private:	//all required variables
 	int inventory_size;
 	int capacity;
 	double maxvalue;
-	raritysystem raritysys;
+	raritysystem raritysys; //helper functions
 	condtitionsystem conditionsys;
 	pricingsystem pricingsys;
 	inputvalidator inputsys;

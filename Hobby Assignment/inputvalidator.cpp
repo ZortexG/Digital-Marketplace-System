@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
+//function to mainly input string
 string inputvalidator::inputname(const string& prompt)
 {
 	string name;

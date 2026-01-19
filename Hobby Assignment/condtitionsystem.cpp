@@ -40,7 +40,7 @@ string condtitionsystem::conditionsel(int conditionint)
 		return "Minimal Wear";
 	}
 	else if (conditionint == 5) {
-		return "Battle Scarred";
+		return "Factory New";
 	}
 	else {
 		return "Field Tested";

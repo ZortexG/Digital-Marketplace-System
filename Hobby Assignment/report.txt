@@ -1,0 +1,5 @@
+Inventory Report:
+Name                Rarity      Condition           Type        Price($)  
+Laptop              Common         Factory New         Electronics    60.00     
+Game                Common         Factory New         Electronics    75.00     
+
