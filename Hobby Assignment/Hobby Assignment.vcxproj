@@ -24,7 +24,7 @@
     <ProjectGuid>{2e70e354-b070-4c12-b7d7-c99485f4dfa1}</ProjectGuid>
     <RootNamespace>HobbyAssignment</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Hobby Assignment Refined</ProjectName>
+    <ProjectName>Digital Marketplace System</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
