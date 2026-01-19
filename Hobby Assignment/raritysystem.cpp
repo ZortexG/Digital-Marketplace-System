@@ -3,7 +3,7 @@
 
 int raritysystem::raritygen() //I have designed the rarity sytstem to be random, these are the odds
 {
-	int rarityfloatval = rand() % 101;
+	int rarityfloatval = rand() % 101; //odds 0-100
 	if (rarityfloatval < 50) {
 		return 1;
 	}

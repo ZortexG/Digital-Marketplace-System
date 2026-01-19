@@ -1,5 +1,5 @@
 Inventory Report:
 Name                Rarity      Condition           Type        Price($)  
-Laptop              Common         Factory New         Electronics    60.00     
-Game                Common         Factory New         Electronics    75.00     
+Sword               Common         Factory New         Weapon         60.00     
+Shield              Common         Factory New         Defence        75.00     
 
