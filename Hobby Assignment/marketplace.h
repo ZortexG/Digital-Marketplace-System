@@ -43,6 +43,6 @@ public:
 	//int getcapacity() const;
 	int gettotalval() const;
 
-	void additemtodirect(const item&);
+	void additemtodirect(const item&); //
 };
 

@@ -75,7 +75,7 @@ void marketplace::extramenu() //Extra menu that can be expanded later
 		cin >> opt;
 		switch (opt) {
 		case 1:
-
+			break;
 		case 2:
 			break;
 		default:
@@ -109,7 +109,7 @@ void marketplace::additem() {	//Adding new item function
 	}
 	newitem.item_condition = static_cast<items::condition>(conditionsys.conditiongen(0));
 	newitem.type = inputsys.inputname("Enter the item's type: ");
-	newitem.price = pricingsys.pricegen(newitem.name, r, static_cast<int>(newitem.item_condition));
+	newitem.price = pricingsys.pricegen(r, static_cast<int>(newitem.item_condition));
 	inventory[inventory_size] = newitem;
 	inventory_size++;
 	cout << "Your item was added" << endl;

@@ -1,7 +1,7 @@
 #include "pricingsystem.h"
 #include <cstdlib>
 
-double pricingsystem::pricegen(const string& itemname, int rarityint, int condint)
+double pricingsystem::pricegen(int rarityint, int condint)
 {
 	double randprice = rand() % 26;	//Here is the pricing system. Right now I made it so that the pricing is random
 	double baseprice = randprice * 2.5;	
