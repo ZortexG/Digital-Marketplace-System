@@ -12,13 +12,13 @@ using namespace std;
 marketplace::marketplace() //Base Values for the marketplace
 {
 	inventory_size = 0;
-	capacity = 10;
 	maxvalue = 0.0;
-	inventory = new item[capacity];
+	for (int i = 0; i < 100; ++i) {
+		inventory[i] = {};
+	}
 }
 marketplace::~marketplace()
 {
-	delete[] inventory;
 }
 void marketplace::introbanner() //Welcome intro banner
 {
@@ -70,27 +70,13 @@ void marketplace::extramenu() //Extra menu that can be expanded later
 	do {
 		cout << "Extra Functions Menu:" << endl;
 		cout << "1. Calculate Average Price" << endl;
-		cout << "2. Expand Inventory Capacity" << endl;
-		cout << "3. Back to Main Menu" << endl;
+		cout << " 2. Return to main menu" << endl;
 		cout << "Enter your choice: ";
 		cin >> opt;
 		switch (opt) {
 		case 1:
-			if (inventory_size > 0) {
-				double* values = new double[inventory_size];
-				for (int i = 0; i < inventory_size; ++i) {
-					values[i] = inventory[i].price;
-				}
-				delete[] values;
-			}
-			else {
-				cout << "No items in inventory to calculate averages." << endl;
-			}
-			break;
+
 		case 2:
-			expandcap();
-			break;
-		case 3:
 			break;
 		default:
 			cout << "Invalid option. Please try again." << endl;
@@ -100,9 +86,9 @@ void marketplace::extramenu() //Extra menu that can be expanded later
 }
 
 void marketplace::additem() {	//Adding new item function
-	if (inventory_size >= capacity) {
-		cout << "Inventory full. Expanding capacity..." << endl;
-		expandcap();
+	if (inventory_size >= 100) {
+		cout << "Inventory is full. Cannot add more items." << endl;
+		return;
 	}
 	item newitem;
 	int opt;
@@ -127,18 +113,6 @@ void marketplace::additem() {	//Adding new item function
 	inventory[inventory_size] = newitem;
 	inventory_size++;
 	cout << "Your item was added" << endl;
-}
-
-void marketplace::expandcap() {	//Expanding the capacity of the inventory
-	int newcapacity = capacity + 15;
-	item* newinventory = new item[newcapacity];
-	for (int i = 0; i < inventory_size; ++i) {
-		newinventory[i] = inventory[i];
-	}
-	delete[] inventory;
-	inventory = newinventory;
-	capacity = newcapacity;
-	cout << "Operation sucessful. The new capacity is :" << capacity << endl;
 }
 
 double marketplace::calculateavg(const double* values, int size) const //Calculating average price of items in inventory
@@ -212,4 +186,29 @@ void marketplace::savereport() { //Saving report to a text file
 	reportfile.close();
 	cout << "report genned successfully." << endl;
 	cout << "Report saved to report.txt" << endl;
+}
+
+//Unit testing related functions
+
+int marketplace::getinventorysize() const
+{
+	return inventory_size;
+}
+
+int marketplace::gettotalval() const
+{
+	double totalval = 0.0;
+	for (int i = 0; i < inventory_size; ++i) {
+		totalval += inventory[i].price;
+	}
+	return totalval;
+}
+void marketplace::additemtodirect(const item& newitem)
+{
+	if (inventory_size >= 100) {
+		cout << "Inventory is full. Cannot add more items." << endl;
+		return;
+	}
+	inventory[inventory_size] = newitem;
+	inventory_size++;
 }

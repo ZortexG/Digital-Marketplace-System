@@ -26,7 +26,7 @@ string raritysystem::raritysel(int rarityint) //based on the odds, the rarity wi
 	else if (rarityint == 2) {
 		return "Rare";
 	}
-	else if (rarityint == 3) {
+	else if (rarityint == 3 || rarityint == 4) {
 		return "Legendary";
 	}
 	else {

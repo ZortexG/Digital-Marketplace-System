@@ -12,8 +12,8 @@ using namespace std;
 class marketplace :public items
 {
 private:	//all required variables
-	item* inventory;	//dynamic array for inventory
 	int inventory_size;
+	item inventory[100];
 	int capacity;
 	double maxvalue;
 	raritysystem raritysys; //helper functions
@@ -29,14 +29,20 @@ public:
 	void displayinventory();
 	void extramenu();
 	void tracksales();
-	void expandcap();
+	//void expandcap();
 
 	//add item function
 	void additem();
-	
+
 	//save report function
 	void savereport();
 
-	double calculateavg(const double* values, int size) const;
+	double calculateavg(const double*, int) const;
+
+	int getinventorysize() const;
+	//int getcapacity() const;
+	int gettotalval() const;
+
+	void additemtodirect(const item&);
 };
 
