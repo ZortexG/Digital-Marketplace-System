@@ -1,5 +1,6 @@
 # Digital Marketplace System
 It is a C++ application for managing digital assets and items. It is very much inspired by the Steam marketplace and includes features like rarity, item condition (float), and prices.
+(This is a dev branch)
 
 # Features:
 - Dynamic Inventory Management: Add, display, and track items with automatic capacity expansion.
