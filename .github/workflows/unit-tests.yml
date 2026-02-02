@@ -1,0 +1,35 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [ main, master, develop, copilot/** ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++ make
+        
+    - name: Compile tests
+      run: |
+        g++ -o test_runner tests/test_main.cpp \
+          "Hobby Assignment/marketplace.cpp" \
+          "Hobby Assignment/condtitionsystem.cpp" \
+          "Hobby Assignment/inputvalidator.cpp" \
+          "Hobby Assignment/raritysystem.cpp" \
+          "Hobby Assignment/pricingsystem.cpp" \
+          "Hobby Assignment/inventorymanager.cpp" \
+          -I "Hobby Assignment/" \
+          -std=c++11
+          
+    - name: Run tests
+      run: ./test_runner

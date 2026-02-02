@@ -6,7 +6,6 @@
 #include "pricingsystem.h"
 #include "raritysystem.h"
 #include "inputvalidator.h"
-#include "conditionsystem.h"
 #include <cstdlib>
 #include <string>
 using namespace std;
@@ -32,9 +31,9 @@ TEST_CASE("Calculate avarage zero size") { //guard case
 TEST_CASE("Pricing calculation wiht diff multipliers") { //Normal Case
 	pricingsystem pricing;
 	srand(42);
-	double price1 = pricing.pricegen("ITEM1", 1, 1);
+	double price1 = pricing.pricegen(1, 1);
 	CHECK(price1 >= 0.0);
-	double price2 = pricing.pricegen("ITEM2", 3, 5);
+	double price2 = pricing.pricegen(3, 5);
 	CHECK(price2 >= price1);
 }
 
