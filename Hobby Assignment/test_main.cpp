@@ -17,9 +17,9 @@ TEST_CASE("Calculate Average") { //Normal Case
 }
 TEST_CASE("Calculate average single value") { //Edge Case
 	marketplace market;
-	double values[] = { 50.0 };
+	double values[] = { 40.0 };
 	double avg = market.calculateavg(values, 1);
-	CHECK(avg == 50.0);
+	CHECK(avg == 40.0);
 }
 TEST_CASE("Calculate avarage zero size") { //guard case
 	marketplace market;
