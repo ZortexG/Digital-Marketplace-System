@@ -27,7 +27,14 @@ TEST_CASE("Calculate avarage zero size") { //guard case
 	double avg = market.calculateavg(values, 0);
 	CHECK(avg == 0.0);
 }
-
+TEST_CASE("Pricing calculation wiht diff multipliers") { //Normal Case
+	pricingsystem pricing;
+	srand(42);
+	double price1 = pricing.pricegen(1, 1);
+	CHECK(price1 >= 0.0);
+	double price2 = pricing.pricegen(3, 5);
+	CHECK(price2 >= price1);
+}
 
 //(b)
 TEST_CASE("Enum Common Rarity") { //Normal Case
