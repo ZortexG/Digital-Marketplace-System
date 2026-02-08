@@ -11,6 +11,7 @@ It is a C++ application for managing digital assets and items. It is very much i
 - Report generation: Easily generate a report as a text file with ease.
 
 # Planned Features:
+- User-controlled marketplace
 - Sell Option
 - A dynamic storefront where users can buy items from
 - Add search capabilities
