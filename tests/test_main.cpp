@@ -28,7 +28,7 @@ TEST_CASE("Calculate avarage zero size") { //guard case
 	double avg = market.calculateavg(values, 0);
 	CHECK(avg == 0.0);
 }
-TEST_CASE("Pricing calculation wiht diff multipliers") { //Normal Case
+TEST_CASE("Pricing calculation with diff multipliers") { //Normal Case
 	pricingsystem pricing;
 	srand(42);
 	double price1 = pricing.pricegen("Common", "Field-Tested");
@@ -59,7 +59,7 @@ TEST_CASE("Enum Invalid Rarity") { //Edge Case
 	raritysystem rarity;
 	srand(50);  // Seed to get predictable result
 	string result = rarity.raritygen();
-	// raritygen() returns one of: Common, Rare, Epic, Legendary (defaults to Common for edge cases)
+	// raritygen() returns one of: Common, Rare, Epic, Legendary
 	bool valid = (result == "Common" || result == "Rare" || result == "Epic" || result == "Legendary");
 	CHECK(valid);
 }
