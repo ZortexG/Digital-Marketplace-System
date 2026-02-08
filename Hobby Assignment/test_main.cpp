@@ -27,6 +27,7 @@ TEST_CASE("Calculate avarage zero size") { //guard case
 	double avg = market.calculateavg(values, 0);
 	CHECK(avg == 0.0);
 }
+//
 TEST_CASE("Pricing calculation wiht diff multipliers") { //Normal Case
 	pricingsystem pricing;
 	srand(42);
