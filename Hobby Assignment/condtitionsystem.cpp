@@ -2,47 +2,25 @@
 #include "condtitionsystem.h"
 #include <cstdlib>
 
-int condtitionsystem::conditiongen(int itemvalue) //Just like rarity, it is also random but with equal odds
+string condtitionsystem::conditiongen()
 {
-	int conditionfloatval = rand() % 101;
-	if (conditionfloatval < 20) {
-		return 1;
+	int conditionfloat = rand() % 101;
+	if(conditionfloat < 20) {
+		return "Battle-Scarred";
 	}
-	else if (conditionfloatval >= 20 && conditionfloatval < 40) {
-		return 2;
+	else if (conditionfloat >= 20 && conditionfloat < 40) {
+		return "Well-Worn";
 	}
-	else if (conditionfloatval >= 40 && conditionfloatval < 60) {
-		return 3;
+	else if (conditionfloat >= 40 && conditionfloat < 60) {
+		return "Field-Tested";
 	}
-	else if (conditionfloatval >= 60 && conditionfloatval < 80) {
-		return 4;
-	}
-	else if (conditionfloatval >= 80) {
-		return 5;
-	}
-	else {
-		return 3;
-	}
-}
-
-string condtitionsystem::conditionsel(int conditionint)
-{
-	if (conditionint == 1) {
-		return "Battle Scarred";
-	}
-	else if (conditionint == 2) {
-		return "Well Worn";
-	}
-	else if (conditionint == 3) {
-		return "Field Tested";
-	}
-	else if (conditionint == 4) {
+	else if (conditionfloat >= 60 && conditionfloat < 80) {
 		return "Minimal Wear";
 	}
-	else if (conditionint == 5) {
+	else if (conditionfloat >= 80) {
 		return "Factory New";
 	}
 	else {
-		return "Field Tested";
+		return "Field-Tested";
 	}
-}
+};

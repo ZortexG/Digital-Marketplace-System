@@ -94,22 +94,43 @@ void marketplace::additem() {	//Adding new item function
 	int opt;
 	cout << "New Item: " << endl;
 	newitem.name = inputsys.inputname("Enter the item's name: ");
-	int r = raritysys.raritygen();
-	if (r == 1) {
+	string r = raritysys.raritygen();
+	if (r == "Common") {
 		newitem.item_rarity = items::COMMON;
 	}
-	else if (r == 2) {
+	else if (r == "Rare") {
 		newitem.item_rarity = items::RARE;
 	}
-	else if (r == 3) {
+	else if (r == "Epic") {
+		newitem.item_rarity = items::EPIC;
+	}
+	else if (r == "Legendary") {
 		newitem.item_rarity = items::LEGENDARY;
 	}
 	else {
 		newitem.item_rarity = items::COMMON;
 	}
-	newitem.item_condition = static_cast<items::condition>(conditionsys.conditiongen(0));
+	string c = conditionsys.conditiongen();
+	if (c == "Factory New") {
+		newitem.item_condition = items::FACTORY_NEW;
+	}
+	else if (c == "Minimal Wear") {
+		newitem.item_condition = items::MINIMAL_WEAR;
+	}
+	else if (c == "Field-Tested") {
+		newitem.item_condition = items::FIELD_TESTED;
+	}
+	else if (c == "Well-Worn") {
+		newitem.item_condition = items::WELL_WORN;
+	}
+	else if (c == "Battle-Scarred") {
+		newitem.item_condition = items::BATTLE_SCARRED;
+	}
+	else {
+		newitem.item_condition = items::FIELD_TESTED;
+	}
 	newitem.type = inputsys.inputname("Enter the item's type: ");
-	newitem.price = pricingsys.pricegen(r, static_cast<int>(newitem.item_condition));
+	newitem.price = pricingsys.pricegen(r, c);
 	inventory[inventory_size] = newitem;
 	inventory_size++;
 	cout << "Your item was added" << endl;
@@ -133,21 +154,58 @@ void marketplace::displayinventory() //Displaying the inventory with setw functi
 		cout << "The inventory is empty" << endl;
 		return;
 	}
-	cout << "Inventory summery: " << endl;
 	cout << fixed << setprecision(2);
-	cout << left << setw(20) << "Name"
-		<< setw(12) << "Rarity"
-		<< setw(20) << "Condition"
-		<< setw(12) << "Type"
-		<< setw(10) << "Price($)" << endl;
+	cout << left << setw(20) << "Name" 
+		<< setw(15) << "Rarity" 
+		<< setw(20) << "Condition" 
+		<< setw(15) << "Type" 
+		<< setw(10) << "Price" << endl;
 	for (int i = 0; i < inventory_size; ++i) {
+
+        string raritystr;
+		string conditionstr;
+
+        if (inventory[i].item_rarity == items::COMMON) {
+			raritystr = "Common";
+        }
+        else if (inventory[i].item_rarity == items::RARE) {
+			raritystr = "Rare";
+        }
+        else if (inventory[i].item_rarity == items::EPIC) {
+			raritystr = "Epic";
+        }
+        else if (inventory[i].item_rarity == items::LEGENDARY) {
+			raritystr = "Legendary";
+        }
+        else {
+			raritystr = "Unknown";
+        }
+
+        
+        if (inventory[i].item_condition == items::FACTORY_NEW) {
+			conditionstr = "Factory New";
+        }
+        else if (inventory[i].item_condition == items::MINIMAL_WEAR) {
+			conditionstr = "Minimal Wear";
+        }
+        else if (inventory[i].item_condition == items::FIELD_TESTED) {
+			conditionstr = "Field Tested";
+        }
+        else if (inventory[i].item_condition == items::WELL_WORN) {
+			conditionstr = "Well Worn";
+        }
+        else if (inventory[i].item_condition == items::BATTLE_SCARRED) {
+			conditionstr = "Battle Scarred";
+        }
+        else {
+			conditionstr = "Unknown";
+        }
 		cout << left << setw(20) << inventory[i].name
-			<< setw(15) << raritysys.raritysel(static_cast<int>(inventory[i].item_rarity))
-			<< setw(20) << conditionsys.conditionsel(static_cast<int>(inventory[i].item_condition))
+			<< setw(15) << raritystr
+			<< setw(20) << conditionstr
 			<< setw(15) << inventory[i].type
 			<< setw(10) << inventory[i].price << endl;
 	}
-
 }
 void marketplace::tracksales() //tracking sales
 {
@@ -159,8 +217,8 @@ void marketplace::tracksales() //tracking sales
 	cout << "Total value of items in inventory: $" << totalvalue << endl;
 }
 void marketplace::savereport() { //Saving report to a text file
-	if (inventory_size == 0) {
-		cout << "Inventory empty." << endl;
+	if(inventory_size == 0) {
+		cout << "The inventory is empty. No report to save." << endl;
 		return;
 	}
 	ofstream reportfile("report.txt");
@@ -168,23 +226,59 @@ void marketplace::savereport() { //Saving report to a text file
 		cout << "error creating the file." << endl;
 		return;
 	}
-	reportfile << "Inventory Report:" << endl;
+	reportfile << "Inventory Report" << endl;
 	reportfile << fixed << setprecision(2);
 	reportfile << left << setw(20) << "Name"
-		<< setw(12) << "Rarity"
+		<< setw(15) << "Rarity"
 		<< setw(20) << "Condition"
-		<< setw(12) << "Type"
-		<< setw(10) << "Price($)" << endl;
+		<< setw(15) << "Type"
+		<< setw(10) << "Price" << endl;
 	for (int i = 0; i < inventory_size; ++i) {
+		string raritystr;
+		string conditionstr;
+		if (inventory[i].item_rarity == items::COMMON) {
+			raritystr = "Common";
+		}
+		else if (inventory[i].item_rarity == items::RARE) {
+			raritystr = "Rare";
+		}
+		else if (inventory[i].item_rarity == items::EPIC) {
+			raritystr = "Epic";
+		}
+		else if (inventory[i].item_rarity == items::LEGENDARY) {
+			raritystr = "Legendary";
+		}
+		else {
+			raritystr = "Unknown";
+		}
+		
+		if (inventory[i].item_condition == items::FACTORY_NEW) {
+			conditionstr = "Factory New";
+		}
+		else if (inventory[i].item_condition == items::MINIMAL_WEAR) {
+			conditionstr = "Minimal Wear";
+		}
+		else if (inventory[i].item_condition == items::FIELD_TESTED) {
+			conditionstr = "Field Tested";
+		}
+		else if (inventory[i].item_condition == items::WELL_WORN) {
+			conditionstr = "Well Worn";
+		}
+		else if (inventory[i].item_condition == items::BATTLE_SCARRED) {
+			conditionstr = "Battle Scarred";
+		}
+		else {
+			conditionstr = "Unknown";
+		}
 		reportfile << left << setw(20) << inventory[i].name
-			<< setw(15) << raritysys.raritysel(static_cast<int>(inventory[i].item_rarity))
-			<< setw(20) << conditionsys.conditionsel(static_cast<int>(inventory[i].item_condition))
+			<< setw(15) << raritystr
+			<< setw(20) << conditionstr
 			<< setw(15) << inventory[i].type
 			<< setw(10) << inventory[i].price << endl;
 	}
 	reportfile << endl;
 	reportfile.close();
-	cout << "report genned successfully." << endl;
+	cout << "Report created successfully." << endl;
 	cout << "Report saved to report.txt" << endl;
 }
 

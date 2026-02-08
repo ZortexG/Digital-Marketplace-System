@@ -30,34 +30,12 @@ TEST_CASE("Calculate avarage zero size") { //guard case
 TEST_CASE("Pricing calculation wiht diff multipliers") { //Normal Case
 	pricingsystem pricing;
 	srand(42);
-	double price1 = pricing.pricegen(1, 1);
+	double price1 = pricing.pricegen("Common", "Battle-Scarred");
 	CHECK(price1 >= 0.0);
-	double price2 = pricing.pricegen(3, 5);
+	double price2 = pricing.pricegen("Rare","Factory New");
 	CHECK(price2 >= price1);
 }
 
-//(b)
-TEST_CASE("Enum Common Rarity") { //Normal Case
-	raritysystem rarity;
-	string result = rarity.raritysel(1);
-	CHECK(result == "Common");
-
-}
-TEST_CASE("Enum Legendary Rarity") { //Normal Case
-	raritysystem rarity;
-	string result = rarity.raritysel(4);
-	CHECK(result == "Legendary");
-}
-TEST_CASE("Enum Invalid Rarity") { //Edge Case
-	raritysystem rarity;
-	string result = rarity.raritysel(5);
-	CHECK(result == "Common");
-}
-TEST_CASE("ENUM condition system") { //guard case
-	condtitionsystem condition;
-	string result = condition.conditionsel(3);
-	CHECK(result == "Field Tested");
-}
 
 //(c)
 TEST_CASE("Empty inventory") { //edge case
@@ -111,6 +89,6 @@ TEST_CASE("Validator thinks all negatives are invalid") { //edge case
 TEST_CASE("Price prediction with different rarity and condition") { //normal case
 	pricingsystem pricing;
 	srand(1);
-	double price1 = pricing.pricegen(2, 3);
+	double price1 = pricing.pricegen("Rare", "Field-Tested");
 	CHECK(price1 >= 0.0);
 }

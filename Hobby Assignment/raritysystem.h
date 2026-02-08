@@ -6,7 +6,6 @@ using namespace std;
 class raritysystem
 {
 public:
-	int raritygen();
-	string raritysel(int rarityint);
+	string raritygen();
 };
 

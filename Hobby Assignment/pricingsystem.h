@@ -6,6 +6,6 @@ using namespace std;
 class pricingsystem
 {
 public:
-	double pricegen(int rarityint, int condint);
+	double pricegen(string, string);
 };
 

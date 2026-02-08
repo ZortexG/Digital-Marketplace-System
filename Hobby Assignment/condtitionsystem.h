@@ -5,7 +5,6 @@ using namespace std;
 class condtitionsystem
 {
 public:
-	int conditiongen(int itemvalue);
-	string conditionsel(int conditionint);
+	string conditiongen();
 };
 
