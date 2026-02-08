@@ -1,6 +1,8 @@
 
 
 # Digital Marketplace System
+
+![Unit Tests](https://github.com/ZortexG/Digital-Marketplace-System/workflows/Unit%20Tests/badge.svg)
 It is a C++ application for managing digital assets and items. It is very much inspired by the Steam marketplace and includes features like rarity, item condition (float), and prices.
 
 # Features:
