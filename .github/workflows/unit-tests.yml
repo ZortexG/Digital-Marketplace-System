@@ -24,6 +24,7 @@ jobs:
     - name: Compile tests
       run: |
         g++ -o test_runner tests/test_main.cpp \
+          "Hobby Assignment/doctestmain.cpp" \
           "Hobby Assignment/marketplace.cpp" \
           "Hobby Assignment/condtitionsystem.cpp" \
           "Hobby Assignment/inputvalidator.cpp" \
