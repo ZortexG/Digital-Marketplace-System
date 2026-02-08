@@ -1,4 +1,4 @@
-![Unit Tests](https://github.com/owner/repo/workflows/workflow-name/badge.svg)
+[![Unit Tests](https://github.com/ZortexG/Digital-Marketplace-System/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/ZortexG/Digital-Marketplace-System/actions/workflows/unit-tests.yml)
 
 # Digital Marketplace System
 It is a C++ application for managing digital assets and items. It is very much inspired by the Steam marketplace and includes features like rarity, item condition (float), and prices.
