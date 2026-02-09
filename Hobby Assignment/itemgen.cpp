@@ -28,6 +28,7 @@ const marketflags& itemgen::getflags() const
 }
 
 void itemgen::print() const {
+	items::print();
 	cout << "Drop chance: " << item_dropchance << "%" << endl;
 	if (item_flags.istradable())
 	{

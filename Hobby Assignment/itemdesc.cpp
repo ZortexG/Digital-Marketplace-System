@@ -28,6 +28,7 @@ const marketflags& itemdesc::getmarketflags() const
 }
 void itemdesc::print() const
 {
+	items::print();
 	cout << "Item Name: " << item_finalname << endl;
 	cout << "Base Name: " << getname() << endl;
 	cout << "Duration: " << getduration() << " days" << endl;

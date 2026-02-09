@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="items">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="items::rarity" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>items.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="items::condition" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>items.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="items::item" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>items.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgQAAAAgQAIAAIgAAAhAAAQAAAIAAAIAIAAAQAAABAA=</HashCode>
+      <FileName>items.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="marketplace">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGEAgAAAAAEBFRAAIAAAgAgIEAAAAGBAAgAAIAAAE=</HashCode>
+      <FileName>marketplace.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="itemdesc">
+    <Position X="4.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAEAAAABAAAAAAAAAAAAAAEAEAABAAAAAIAAAAA=</HashCode>
+      <FileName>itemdesc.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="itemgen">
+    <Position X="7.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAIgAAAAAIAAAAABAAAAAAAIAAAAAAAAAABAAAA=</HashCode>
+      <FileName>itemgen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pricingsystem" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>pricingsystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="marketflags" Collapsed="true">
+    <Position X="15.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAABAABAAFAIAAAAAgAAAQEAAAAAAAAAAA=</HashCode>
+      <FileName>marketflags.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="condtitionsystem" Collapsed="true">
+    <Position X="11.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>condtitionsystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="inputvalidator" Collapsed="true">
+    <Position X="13.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAARBAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>inputvalidator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raritysystem" Collapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>raritysystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

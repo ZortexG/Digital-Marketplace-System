@@ -18,6 +18,8 @@ const string& items::getname() const
 {
 	return item_name;
 }
+
+
 void items::setduration(int duration)
 {
 	item_duration = duration;
@@ -26,6 +28,8 @@ int items::getduration() const
 {
 	return item_duration;
 }
+
+
 void items::setrarity(rarity r)
 {
 	item_rarity = r;
@@ -34,6 +38,8 @@ items::rarity items::getrarity() const
 {
 	return item_rarity;
 }
+
+
 void items::setcondition(condition c)
 {
 	item_condition = c;
@@ -42,6 +48,8 @@ items::condition items::getcondition() const
 {
 	return item_condition;
 }
+
+
 const char* items::raritystring(rarity r)
 {
 	if (r == COMMON)
@@ -70,6 +78,8 @@ const char* items::conditionstring(condition c)
 	else
 		return "Field Tested";
 }
+
+
 void items::print() const
 {
 	cout << "Name: " << item_name << endl;
