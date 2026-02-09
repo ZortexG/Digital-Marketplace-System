@@ -31,6 +31,7 @@ jobs:
           "Hobby Assignment/items.cpp" \
           "Hobby Assignment/condtitionsystem.cpp" \
           "Hobby Assignment/inputvalidator.cpp" \
+          "Hobby Assignment/doctestmain.cpp" \
           "Hobby Assignment/raritysystem.cpp" \
           "Hobby Assignment/pricingsystem.cpp" \
           -I "Hobby Assignment/" \
