@@ -132,12 +132,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="inputvalidator.cpp" />
+    <ClCompile Include="itemdesc.cpp" />
+    <ClCompile Include="itemgen.cpp" />
+    <ClCompile Include="items.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="marketflags.cpp" />
     <ClCompile Include="marketplace.cpp" />
     <ClCompile Include="pricingsystem.cpp" />
     <ClCompile Include="raritysystem.cpp" />
@@ -152,7 +156,10 @@
     <ClInclude Include="condtitionsystem.h" />
     <ClInclude Include="doctest.h" />
     <ClInclude Include="inputvalidator.h" />
+    <ClInclude Include="itemdesc.h" />
+    <ClInclude Include="itemgen.h" />
     <ClInclude Include="items.h" />
+    <ClInclude Include="marketflags.h" />
     <ClInclude Include="marketplace.h" />
     <ClInclude Include="pricingsystem.h" />
     <ClInclude Include="raritysystem.h" />

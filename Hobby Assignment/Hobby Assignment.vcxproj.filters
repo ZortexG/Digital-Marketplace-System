@@ -39,6 +39,18 @@
     <ClCompile Include="doctestmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="items.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="marketflags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="itemdesc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="itemgen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="items.h">
@@ -60,6 +72,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="doctest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="marketflags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itemdesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itemgen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,14 @@
 //This class is for item properties and identification
 #pragma once
-#include "items.h"
 #include <string>
+
 using namespace std;
+
 class items
 {
+protected:
+	string item_name;
+
 public:
 	enum rarity	//Rarity of the said items
 	{
@@ -13,6 +17,7 @@ public:
 		EPIC,
 		LEGENDARY
 	};
+
 	enum condition { //conditions of the items, inspired by CS items
 		FACTORY_NEW,
 		MINIMAL_WEAR,
@@ -20,7 +25,9 @@ public:
 		WELL_WORN,
 		BATTLE_SCARRED
 	};
-	struct item { //struct for item stats
+
+	struct item
+	{
 		string name;
 		rarity item_rarity;
 		condition item_condition;
@@ -28,8 +35,43 @@ public:
 		double price;
 		int quantity;
 		double item_float;
-		
+
+		item()
+			: name(""),
+			  item_rarity(COMMON),
+			  item_condition(FIELD_TESTED),
+			  type(""),
+			  price(0.0),
+			  quantity(0),
+			  item_float(0.0)
+		{
+		}
 	};
+
+	items();
+	items(const string&, int, rarity, condition);
+
+	void setname(const string&);
+	const string& getname() const;
+
+	void setduration(int);
+	int getduration() const;
+
+	void setrarity(rarity);
+	rarity getrarity() const;
+
+	void setcondition(condition);
+	condition getcondition() const;
+
+	void print() const;
+
+private:
+	int item_duration;
+	rarity item_rarity;
+	condition item_condition;
+
+	static const char* raritystring(rarity);
+	static const char* conditionstring(condition);
 };
 
 

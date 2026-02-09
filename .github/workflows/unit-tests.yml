@@ -23,13 +23,16 @@ jobs:
         
     - name: Compile tests
       run: |
-        g++ -o test_runner tests/test_main.cpp \
-          "Hobby Assignment/marketplace.cpp" \
+        g++ -o test_runner \
+          "Hobby Assignment/test_main.cpp" \
+          "Hobby Assignment/marketflags.cpp" \
+          "Hobby Assignment/itemdesc.cpp" \
+          "Hobby Assignment/itemgen.cpp" \
+          "Hobby Assignment/items.cpp" \
           "Hobby Assignment/condtitionsystem.cpp" \
           "Hobby Assignment/inputvalidator.cpp" \
           "Hobby Assignment/raritysystem.cpp" \
           "Hobby Assignment/pricingsystem.cpp" \
-          "Hobby Assignment/inventorymanager.cpp" \
           -I "Hobby Assignment/" \
           -std=c++14
           
