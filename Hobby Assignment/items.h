@@ -67,6 +67,7 @@ public:
 
 	virtual double getvalue() const = 0;
 
+
 protected:
 	string item_name;
 	static const char* raritystring(rarity);

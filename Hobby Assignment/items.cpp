@@ -10,7 +10,10 @@ items::items(const string& name, int duration, rarity r, condition c): item_name
 {
 }
 
-items::~items() = default;
+items::~items()
+{
+
+}
 
 
 void items::setname(const string& name)
