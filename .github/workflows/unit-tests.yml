@@ -33,6 +33,7 @@ jobs:
           "Hobby Assignment/inputvalidator.cpp" \
           "Hobby Assignment/doctestmain.cpp" \
           "Hobby Assignment/raritysystem.cpp" \
+          "Hobby Assignment/itemmanager.cpp" \
           "Hobby Assignment/pricingsystem.cpp" \
           -I "Hobby Assignment/" \
           -std=c++14
