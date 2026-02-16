@@ -6,8 +6,6 @@ using namespace std;
 
 class items
 {
-protected:
-	string item_name;
 
 public:
 	enum rarity	//Rarity of the said items
@@ -51,6 +49,8 @@ public:
 	items();
 	items(const string&, int, rarity, condition);
 
+	virtual ~items();
+
 	void setname(const string&);
 	const string& getname() const;
 
@@ -63,15 +63,18 @@ public:
 	void setcondition(condition);
 	condition getcondition() const;
 
-	void print() const;
+	virtual void print() const;
 
+	virtual double getvalue() const = 0;
+
+protected:
+	string item_name;
+	static const char* raritystring(rarity);
+	static const char* conditionstring(condition);
 private:
 	int item_duration;
 	rarity item_rarity;
 	condition item_condition;
-
-	static const char* raritystring(rarity);
-	static const char* conditionstring(condition);
 };
 
 

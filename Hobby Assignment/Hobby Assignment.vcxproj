@@ -134,6 +134,7 @@
     <ClCompile Include="inputvalidator.cpp" />
     <ClCompile Include="itemdesc.cpp" />
     <ClCompile Include="itemgen.cpp" />
+    <ClCompile Include="itemmanager.cpp" />
     <ClCompile Include="items.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -158,6 +159,7 @@
     <ClInclude Include="inputvalidator.h" />
     <ClInclude Include="itemdesc.h" />
     <ClInclude Include="itemgen.h" />
+    <ClInclude Include="itemmanager.h" />
     <ClInclude Include="items.h" />
     <ClInclude Include="marketflags.h" />
     <ClInclude Include="marketplace.h" />

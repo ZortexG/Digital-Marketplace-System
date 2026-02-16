@@ -1,4 +1,5 @@
 #include "itemgen.h"
+#include "pricingsystem.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -25,6 +26,14 @@ void itemgen::setflags(const marketflags& flags)
 const marketflags& itemgen::getflags() const
 {
 	return item_flags;
+}
+
+double itemgen::getvalue() const
+{
+	pricingsystem prices;
+	string raritystr = items::raritystring(getrarity());
+	string conditionstr = items::conditionstring(getcondition());
+	return prices.pricegen(raritystr, conditionstr);
 }
 
 void itemgen::print() const {

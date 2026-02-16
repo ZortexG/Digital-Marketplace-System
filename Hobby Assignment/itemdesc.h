@@ -14,7 +14,8 @@ public:
 	void setmarketflags(const marketflags&);
 	const marketflags& getmarketflags() const;
 
-	void print() const;
+	virtual void print() const override;
+	virtual double getvalue() const override;
 private:
 	string item_finalname;
 	marketflags item_marketflags;

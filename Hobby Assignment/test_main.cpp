@@ -8,6 +8,7 @@
 #include "marketflags.h"
 #include "itemdesc.h"
 #include "itemgen.h"
+#include "itemmanager.h"
 #include <sstream>
 #include <iostream>
 #include <string>
@@ -16,7 +17,7 @@ using namespace std;
 
 TEST_CASE("Base default constructor test")
 {
-	items item1;
+	itemdesc item1;
 	CHECK(item1.getname() == "");
 	CHECK(item1.getduration() == 0);
 	CHECK(item1.getrarity() == items::COMMON);
@@ -25,7 +26,8 @@ TEST_CASE("Base default constructor test")
 
 TEST_CASE("Base items added constructor test")
 {
-	items item1("Sword", 0, items::RARE, items::MINIMAL_WEAR);
+	marketflags flags;
+	itemgen item1("Sword", 0, items::RARE, items::MINIMAL_WEAR, 50, flags);
 	CHECK(item1.getname() == "Sword");
 	CHECK(item1.getduration() == 0);
 	CHECK(item1.getrarity() == items::RARE);
@@ -78,4 +80,27 @@ TEST_CASE("Itemgen constructor sets base + derived + composition") {
 	CHECK(item1.getflags().ismarketable() == false);
 	CHECK(item1.getflags().islimited() == true);
 	CHECK(item1.getflags().canbelisted() == false);
+}
+
+TEST_CASE("Pure virtual function test and works polymorphically") {
+	marketflags flags(true, false, true);
+	items* ptr1 = new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	CHECK(ptr1->getvalue() >= 0);
+	delete ptr1;
+}
+
+TEST_CASE("Manager class add, remove deletes and resizes") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+
+	manager.add(new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags));
+	CHECK(manager.getsize() == 1);
+	manager.add(new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags));
+	CHECK(manager.getsize() == 2);
+	CHECK(manager.getind(0)->getname() == "Sword");
+	CHECK(manager.getind(0) != nullptr);	
+	CHECK(manager.getind(1) != nullptr);
+	CHECK(manager.remove(0) == true);
+	CHECK(manager.getsize() == 1);
+	CHECK(manager.getind(0) != nullptr);
 }
