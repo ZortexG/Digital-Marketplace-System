@@ -25,17 +25,17 @@ jobs:
       run: |
         g++ -o test_runner \
           "tests/test_main.cpp" \
-          "Hobby Assignment/marketflags.cpp" \
+          "Hobby Assignment/condtitionsystem.cpp" \
+          "Hobby Assignment/doctestmain.cpp" \
+          "Hobby Assignment/inputvalidator.cpp" \
           "Hobby Assignment/itemdesc.cpp" \
           "Hobby Assignment/itemgen.cpp" \
-          "Hobby Assignment/items.cpp" \
-          "Hobby Assignment/condtitionsystem.cpp" \
-          "Hobby Assignment/inputvalidator.cpp" \
-          "Hobby Assignment/doctestmain.cpp" \
-          "Hobby Assignment/raritysystem.cpp" \
           "Hobby Assignment/itemmanager.cpp" \
-          "Hobby Assignment/pricingsystem.cpp" \
+          "Hobby Assignment/items.cpp" \
           "Hobby Assignment/marketplace.cpp" \
+          "Hobby Assignment/marketflags.cpp" \
+          "Hobby Assignment/pricingsystem.cpp" \
+          "Hobby Assignment/raritysystem.cpp" \
           -I "Hobby Assignment/" \
           -std=c++14
           
