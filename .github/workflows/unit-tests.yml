@@ -8,33 +8,33 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Setup MSVC
+      uses: ilammy/msvc-dev-cmd@v1
       
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y g++ make
-        
     - name: Compile tests
       run: |
-        g++ -o test_runner \
-          "Hobby Assignment/test_main.cpp" \
-          "tests/test_main.cpp" \
-          "Hobby Assignment/marketflags.cpp" \
-          "Hobby Assignment/itemdesc.cpp" \
-          "Hobby Assignment/itemgen.cpp" \
-          "Hobby Assignment/raritysystem.cpp" \
-          "Hobby Assignment/itemmanager.cpp" \
-          "Hobby Assignment/pricingsystem.cpp" \
-          "Hobby Assignment/marketplace.cpp" \
-          -I "Hobby Assignment/" \
-          -std=c++14
+        cl /EHsc /std:c++14 /I "Hobby Assignment" /Fe:test_runner.exe `
+          "Hobby Assignment/doctestmain.cpp" `
+          "Hobby Assignment/test_main.cpp" `
+          "tests/test_main.cpp" `
+          "Hobby Assignment/marketflags.cpp" `
+          "Hobby Assignment/itemdesc.cpp" `
+          "Hobby Assignment/itemgen.cpp" `
+          "Hobby Assignment/raritysystem.cpp" `
+          "Hobby Assignment/itemmanager.cpp" `
+          "Hobby Assignment/pricingsystem.cpp" `
+          "Hobby Assignment/marketplace.cpp" `
+          "Hobby Assignment/condtitionsystem.cpp" `
+          "Hobby Assignment/items.cpp" `
+          "Hobby Assignment/inputvalidator.cpp"
           
     - name: Run tests
-      run: ./test_runner
+      run: .\test_runner.exe
