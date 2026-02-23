@@ -24,7 +24,7 @@ jobs:
     - name: Compile tests
       run: |
         g++ -o test_runner \
-          "Hobby Assignment/test_main.cpp" \
+          "tests/test_main.cpp" \
           "Hobby Assignment/marketflags.cpp" \
           "Hobby Assignment/itemdesc.cpp" \
           "Hobby Assignment/itemgen.cpp" \
@@ -35,6 +35,7 @@ jobs:
           "Hobby Assignment/raritysystem.cpp" \
           "Hobby Assignment/itemmanager.cpp" \
           "Hobby Assignment/pricingsystem.cpp" \
+          "Hobby Assignment/marketplace.cpp" \
           -I "Hobby Assignment/" \
           -std=c++14
           
