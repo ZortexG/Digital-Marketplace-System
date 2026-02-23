@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="condtitionsystem.h" />
     <ClInclude Include="doctest.h" />
+    <ClInclude Include="dynamic.h" />
     <ClInclude Include="inputvalidator.h" />
     <ClInclude Include="itemdesc.h" />
     <ClInclude Include="itemgen.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="marketplace.h" />
     <ClInclude Include="pricingsystem.h" />
     <ClInclude Include="raritysystem.h" />
+    <ClInclude Include="template.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

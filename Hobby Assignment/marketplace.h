@@ -39,6 +39,9 @@ public:
 	int getinventorysize() const;
 	int gettotalval() const;
 
+	virtual double getvalue() const override;
+	virtual void print() const override;
+
 	void additemtodirect(const items::item& newitem);
 };
 

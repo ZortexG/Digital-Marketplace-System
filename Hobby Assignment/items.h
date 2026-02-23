@@ -65,8 +65,9 @@ public:
 
 	virtual void print() const;
 
+	virtual void toStream(ostream&) const;
 	virtual double getvalue() const = 0;
-
+	
 
 protected:
 	string item_name;
@@ -78,4 +79,4 @@ private:
 	condition item_condition;
 };
 
-
+ostream& operator<<(ostream&, const items&);

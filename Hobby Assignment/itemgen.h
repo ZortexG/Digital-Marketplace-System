@@ -14,7 +14,7 @@ public:
 	void setflags(const marketflags&);
 	const marketflags& getflags() const;
 
-	virtual void print() const;
+	virtual void print() const override;
 	virtual double getvalue() const override;
 private:
 	int item_dropchance;

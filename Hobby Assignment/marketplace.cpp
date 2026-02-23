@@ -282,8 +282,19 @@ void marketplace::savereport() { //Saving report to a text file
 	cout << "Report saved to report.txt" << endl;
 }
 
-//Unit testing related functions
 
+
+double marketplace::getvalue() const
+{
+	return 0.0;
+}
+
+void marketplace::print() const
+{
+	cout << "Marketplace inventory size: " << inventory_size << endl;
+}
+
+//Unit testing related functions
 int marketplace::getinventorysize() const
 {
 	return inventory_size;
@@ -297,6 +308,7 @@ int marketplace::gettotalval() const
 	}
 	return totalval;
 }
+
 void marketplace::additemtodirect(const item& newitem)
 {
 	if (inventory_size >= 100) {

@@ -1,5 +1,6 @@
 #pragma once
 #include "items.h"
+#include"dynamic.h"
 class itemmanager
 {
 public:
@@ -16,10 +17,10 @@ public:
 	items* getind(int) const;
 	void printall() const;
 
+	items* operator[](int) const;
+	itemmanager& operator+=(items*);
+	itemmanager& operator-=(int);
 private:
-	void resize(int);
-	items** item_arr;
-	int size;
-	int capacity;
+	dynamic<items*> item_arr;
 };
 

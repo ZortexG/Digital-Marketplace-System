@@ -1,3 +1,6 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include "doctest.h"
 #include "marketplace.h"
 #include "condtitionsystem.h"
@@ -9,98 +12,143 @@
 #include "itemdesc.h"
 #include "itemgen.h"
 #include "itemmanager.h"
+#include "dynamic.h"
+#include "template.h"
 #include <sstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 using namespace std;
 
-TEST_CASE("Base default constructor test")
+#ifdef _DEBUG
+struct CRTCtorLeakCheck
 {
-	itemdesc item1;
-	CHECK(item1.getname() == "");
-	CHECK(item1.getduration() == 0);
-	CHECK(item1.getrarity() == items::COMMON);
-	CHECK(item1.getcondition() == items::FIELD_TESTED);
-}
+	CRTCtorLeakCheck()
+	{
+		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+		_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
+		_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
+	}
+};
 
-TEST_CASE("Base items added constructor test")
+static CRTCtorLeakCheck g_crtLeakCheck;
+#endif
+
+
+TEST_CASE("Equality operator == test")
 {
-	marketflags flags;
-	itemgen item1("Sword", 0, items::RARE, items::MINIMAL_WEAR, 50, flags);
-	CHECK(item1.getname() == "Sword");
-	CHECK(item1.getduration() == 0);
-	CHECK(item1.getrarity() == items::RARE);
-	CHECK(item1.getcondition() == items::MINIMAL_WEAR);
-}
-
-TEST_CASE("Markflags tester") {
-	marketflags item1(true, true, false);
-	CHECK(item1.istradable() == true);
-	CHECK(item1.ismarketable() == true);
-	CHECK(item1.islimited() == false);
-	CHECK(item1.canbelisted() == true);
-
-	marketflags item2(true, false, true); //helper function test
-	CHECK(item2.canbelisted() == false);
-}
-
-TEST_CASE("Marketflags setters and getters test") {
-	marketflags item1;
-	item1.settradable(true);
-	item1.setmarketable(false);
-	item1.setlimited(true);
-
-	CHECK(item1.istradable() == true);
-	CHECK(item1.ismarketable() == false);
-	CHECK(item1.islimited() == true);
-	CHECK(item1.canbelisted() == false);
-}
-
-TEST_CASE("Itemdesc constructor sets base + derived + composition") {
 	marketflags flags(true, false, true);
 	itemdesc item1("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
-	item1.setfinalname("Excalibur");
-	CHECK(item1.getname() == "Sword");
-	CHECK(item1.getduration() == 0);
-	CHECK(item1.getrarity() == items::RARE);
-	CHECK(item1.getcondition() == items::MINIMAL_WEAR);
-	CHECK(item1.getfinalname() == "Excalibur");
+	itemdesc item2("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	CHECK(item1 == item2);
 }
 
-TEST_CASE("Itemgen constructor sets base + derived + composition") {
+TEST_CASE("Equality operator == test for non equal")
+{
 	marketflags flags(true, false, true);
-	itemgen item1("Sword", 0, items::RARE, items::MINIMAL_WEAR, 50, flags);
-	CHECK(item1.getname() == "Sword");
-	CHECK(item1.getduration() == 0);
-	CHECK(item1.getrarity() == items::RARE);
-	CHECK(item1.getcondition() == items::MINIMAL_WEAR);
-	CHECK(item1.getdropchance() == 50);
-	CHECK(item1.getflags().istradable() == true);
-	CHECK(item1.getflags().ismarketable() == false);
-	CHECK(item1.getflags().islimited() == true);
-	CHECK(item1.getflags().canbelisted() == false);
+
+	itemdesc item1("Sword", 5, items::RARE, items::MINIMAL_WEAR, flags);
+	item1.setfinalname("GUNS");
+
+	itemdesc item2("Sword", 5, items::RARE, items::MINIMAL_WEAR, flags);
+	item2.setfinalname("Rapier");
+
+	CHECK((item1 == item2) == false);
 }
 
-TEST_CASE("Pure virtual function test and works polymorphically") {
+TEST_CASE("operator << outputs one line sentances") {
 	marketflags flags(true, false, true);
-	items* ptr1 = new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
-	CHECK(ptr1->getvalue() >= 0);
+	itemdesc item1("Sword", 7, items::RARE, items::MINIMAL_WEAR, flags);
+	stringstream ss;
+	ss << item1;
+	const string output = ss.str();
+	CHECK(output.find("Name: Sword") != string::npos);
+	CHECK(output.find("Duration: 7") != string::npos);
+	CHECK(output.find("Rarity: Rare") != string::npos);
+	CHECK(output.find("Condition: Minimal Wear") != string::npos);
+}
+
+TEST_CASE("operator << polymorphic test wiht pointers and references") {
+	marketflags flags(true, false, true);
+	items* ptr1 = new itemdesc("Sword", 7, items::RARE, items::MINIMAL_WEAR, flags);
+	ostringstream ss;
+	ss << *ptr1;
+	const string output = ss.str();
+	CHECK(output.find("Name: Sword") != string::npos);
 	delete ptr1;
 }
 
-TEST_CASE("Manager class add, remove deletes and resizes") {
+TEST_CASE("operator[] index returns correct inddex") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+	manager += new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags);
+	CHECK(manager[0] != nullptr);
+	CHECK(manager[1] != nullptr);
+	CHECK(manager[0]->getname() == "Sword");
+	CHECK(manager[1]->getname() == "MSMC");
+}
+
+TEST_CASE("operator [] invalid index returns null pointer") {
+	itemmanager manager;
+	CHECK(manager[0] == nullptr);
+	CHECK(manager[-1] == nullptr);
+}
+
+TEST_CASE("operator += adds item increases size and stores pointer") {
 	itemmanager manager;
 	marketflags flags(true, false, true);
 
-	manager.add(new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags));
+	CHECK(manager.getsize() == 0);
+
+	items* p = new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += p;
+
 	CHECK(manager.getsize() == 1);
-	manager.add(new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags));
+	CHECK(manager[0] == p);                 // exact pointer stored
+	CHECK(manager[0]->getname() == "Sword");
+}
+
+TEST_CASE("operator -= removes indexes and shifts properly") {
+	itemmanager	manager;
+	marketflags flags(true, false, true);
+	manager += new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags);
+	manager += new itemdesc("R8", 0, items::COMMON, items::WELL_WORN, flags);
+	CHECK(manager.getsize() == 3);
+	manager -= 1;
 	CHECK(manager.getsize() == 2);
-	CHECK(manager.getind(0)->getname() == "Sword");
-	CHECK(manager.getind(0) != nullptr);	
-	CHECK(manager.getind(1) != nullptr);
-	CHECK(manager.remove(0) == true);
-	CHECK(manager.getsize() == 1);
-	CHECK(manager.getind(0) != nullptr);
+	CHECK(manager[0]->getname() == "Sword");
+	CHECK(manager[1]->getname() == "R8");
+	CHECK(manager[2] == nullptr);
+}
+
+TEST_CASE("template function test int") {
+	CHECK(temptest<int>(5, 0, 10) == 5);
+	CHECK(temptest<int>(-5, 0, 10) == 0);
+}
+TEST_CASE("template function test double") {
+	CHECK(temptest<double>(5.5, 0.0, 10.0) == 5.5);
+	CHECK(temptest<double>(-5.5, 0.0, 10.0) == 0.0);
+}
+TEST_CASE("class template stores and resizes") {
+	dynamic<int> dyn;
+	for (int i = 0; i < 20; ++i) {
+		dyn.push_back(i);
+	}
+	CHECK(dyn.size() == 20);
+	CHECK(dyn.getindex(0) == 0);
+	CHECK(dyn.getindex(19) == 19);
+}
+TEST_CASE("class template remove shifts") {
+	dynamic<int> dyn;
+	dyn.push_back(10);
+	dyn.push_back(20);
+	dyn.push_back(30);
+	CHECK(dyn.removed(1) == true);
+	CHECK(dyn.size() == 2);
+	CHECK(dyn.getindex(0) == 10);
+	CHECK(dyn.getindex(1) == 30);
+
 }

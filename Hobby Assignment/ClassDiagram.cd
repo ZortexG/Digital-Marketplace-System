@@ -27,7 +27,7 @@
   <Class Name="marketplace">
     <Position X="9.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAGEAgAAAAAEBFRAAIAAAgAgIEAAAAGBAAgAAIAAAE=</HashCode>
+      <HashCode>AAQGEAgAIAAAEBFRAAIAAAgAgIEAAAAGBAAgAAIAAAE=</HashCode>
       <FileName>marketplace.h</FileName>
     </TypeIdentifier>
   </Class>

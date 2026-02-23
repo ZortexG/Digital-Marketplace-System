@@ -16,6 +16,8 @@ public:
 
 	virtual void print() const override;
 	virtual double getvalue() const override;
+
+	bool operator==(const itemdesc&) const;
 private:
 	string item_finalname;
 	marketflags item_marketflags;

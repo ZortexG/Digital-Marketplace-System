@@ -10,14 +10,25 @@ itemdesc::itemdesc(const string& name, int duration, rarity r, condition c, cons
 {
 }
 
+
+
 void itemdesc::setfinalname(const string& finalname)
 {
 	item_finalname = finalname;
 }
+
 const string& itemdesc::getfinalname() const
 {
 	return item_finalname;
 }
+bool itemdesc::operator==(const itemdesc& other) const
+{
+	return getname() == other.getname()
+		&& getrarity() == other.getrarity()
+		&& getcondition() == other.getcondition()
+		&& item_finalname == other.item_finalname;
+}
+
 
 void itemdesc::setmarketflags(const marketflags& flags)
 {

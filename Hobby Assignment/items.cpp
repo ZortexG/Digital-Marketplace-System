@@ -93,3 +93,17 @@ void items::print() const
 	cout << "Rarity: " << raritystring(item_rarity) << endl;
 	cout << "Condition: " << conditionstring(item_condition) << endl;
 }
+
+void items::toStream(ostream& output) const
+{
+	output << "Name: " << getname()
+		<< " | Duration: " << getduration()
+		<< " | Rarity: " << raritystring(getrarity())
+		<< " | Condition: " << conditionstring(getcondition())
+		<< " | Value: " << getvalue();
+}
+
+ostream& operator<<(ostream& output, const items& object) {
+	object.toStream(output);
+	return output;
+}
