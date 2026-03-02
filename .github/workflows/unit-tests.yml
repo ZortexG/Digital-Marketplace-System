@@ -36,4 +36,4 @@ jobs:
           "Hobby Assignment/items.cpp" `
           "Hobby Assignment/inputvalidator.cpp"
     - name: Run tests
-      run: .\test_runner.exe
+      run: ./test_runner
