@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include "exceptionhandler.h"
 using namespace std;
 
 template<typename T>
@@ -31,7 +32,7 @@ public:
 
 	T getindex(int index) const {
 		if (index < 0 || index >= sized) {
-			return T();
+			throw exceptionhandler("Index out of bounds (dynamic::getindex)");
 		}
 		return arr[index];
 	}
@@ -50,7 +51,7 @@ public:
 
 	bool removed(int index) {
 		if (index < 0 || index >= sized) {
-			return false;
+			throw exceptionhandler("Index out of bounds (dynamic::removed)");
 		}
 		for (int i = index; i < sized - 1; ++i) {
 			arr[i] = arr[i + 1];

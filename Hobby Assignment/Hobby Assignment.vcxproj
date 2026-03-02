@@ -157,6 +157,7 @@
     <ClInclude Include="condtitionsystem.h" />
     <ClInclude Include="doctest.h" />
     <ClInclude Include="dynamic.h" />
+    <ClInclude Include="exceptionhandler.h" />
     <ClInclude Include="inputvalidator.h" />
     <ClInclude Include="itemdesc.h" />
     <ClInclude Include="itemgen.h" />

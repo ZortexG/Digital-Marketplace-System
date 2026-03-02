@@ -46,14 +46,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="pricingsystem" Collapsed="true">
-    <Position X="15.75" Y="1.75" Width="1.5" />
+    <Position X="12.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>pricingsystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="marketflags" Collapsed="true">
-    <Position X="14" Y="1.75" Width="1.5" />
+    <Position X="15.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAIAAAAAABAABAAFAIAAAAAgAAAQEAAAAAAAAAAA=</HashCode>
       <FileName>marketflags.h</FileName>
@@ -67,21 +67,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="inputvalidator" Collapsed="true">
-    <Position X="15.75" Y="0.75" Width="1.5" />
+    <Position X="12.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAARBAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>inputvalidator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="raritysystem" Collapsed="true">
-    <Position X="12.25" Y="2.75" Width="1.5" />
+    <Position X="14" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>raritysystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="itemmanager" Collapsed="true">
-    <Position X="12.25" Y="1.75" Width="1.5" />
+    <Position X="14" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAIIAkAACEAAAAAQAAAAEAAAAAAAAAAACCQAA=</HashCode>
       <FileName>itemmanager.h</FileName>
@@ -92,6 +92,13 @@
     <TypeIdentifier>
       <HashCode>IEAABAAAAAEAAAAQAIFAAAAAgAEAAAAIAQAgAAAAAAA=</HashCode>
       <FileName>dynamic.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="exceptionhandler" Collapsed="true">
+    <Position X="15.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>exceptionhandler.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

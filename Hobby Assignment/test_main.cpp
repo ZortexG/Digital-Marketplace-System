@@ -14,6 +14,7 @@
 #include "itemmanager.h"
 #include "dynamic.h"
 #include "template.h"
+#include "exceptionhandler.h"
 #include <sstream>
 #include <iostream>
 #include <string>
@@ -90,10 +91,10 @@ TEST_CASE("operator[] index returns correct inddex") {
 	CHECK(manager[1]->getname() == "MSMC");
 }
 
-TEST_CASE("operator [] invalid index returns null pointer") {
+TEST_CASE("operator [] invalid index throws") {
 	itemmanager manager;
-	CHECK(manager[0] == nullptr);
-	CHECK(manager[-1] == nullptr);
+	CHECK_THROWS_AS(manager[0], exceptionhandler);
+	CHECK_THROWS_AS(manager[-1], exceptionhandler);
 }
 
 TEST_CASE("operator += adds item increases size and stores pointer") {
@@ -106,7 +107,7 @@ TEST_CASE("operator += adds item increases size and stores pointer") {
 	manager += p;
 
 	CHECK(manager.getsize() == 1);
-	CHECK(manager[0] == p);                 // exact pointer stored
+	CHECK(manager[0] == p);
 	CHECK(manager[0]->getname() == "Sword");
 }
 
@@ -121,7 +122,13 @@ TEST_CASE("operator -= removes indexes and shifts properly") {
 	CHECK(manager.getsize() == 2);
 	CHECK(manager[0]->getname() == "Sword");
 	CHECK(manager[1]->getname() == "R8");
-	CHECK(manager[2] == nullptr);
+	CHECK_THROWS_AS(manager[2], exceptionhandler);
+}
+
+TEST_CASE("operator -= invalid removal throws") {
+	itemmanager manager;
+	CHECK_THROWS_AS(manager -= 0, exceptionhandler);
+	CHECK_THROWS_AS(manager -= -1, exceptionhandler);
 }
 
 TEST_CASE("template function test int") {
@@ -132,6 +139,7 @@ TEST_CASE("template function test double") {
 	CHECK(temptest<double>(5.5, 0.0, 10.0) == 5.5);
 	CHECK(temptest<double>(-5.5, 0.0, 10.0) == 0.0);
 }
+
 TEST_CASE("class template stores and resizes") {
 	dynamic<int> dyn;
 	for (int i = 0; i < 20; ++i) {
@@ -141,6 +149,13 @@ TEST_CASE("class template stores and resizes") {
 	CHECK(dyn.getindex(0) == 0);
 	CHECK(dyn.getindex(19) == 19);
 }
+
+TEST_CASE("class template invalid indexing throws") {
+	dynamic<int> dyn;
+	CHECK_THROWS_AS(dyn.getindex(0), exceptionhandler);
+	CHECK_THROWS_AS(dyn[-1], exceptionhandler);
+}
+
 TEST_CASE("class template remove shifts") {
 	dynamic<int> dyn;
 	dyn.push_back(10);
@@ -148,7 +163,13 @@ TEST_CASE("class template remove shifts") {
 	dyn.push_back(30);
 	CHECK(dyn.removed(1) == true);
 	CHECK(dyn.size() == 2);
-	CHECK(dyn.getindex(0) == 10);
+	CHECK(dyn.getindex(0) == 10);	
 	CHECK(dyn.getindex(1) == 30);
+}
 
+TEST_CASE("class template invalid removal throws") {
+	dynamic<int> dyn;
+	CHECK_THROWS_AS(dyn.removed(0), exceptionhandler);
+	dyn.push_back(1);
+	CHECK_THROWS_AS(dyn.removed(1), exceptionhandler);
 }

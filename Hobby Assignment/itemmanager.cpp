@@ -43,6 +43,9 @@ items* itemmanager::getind(int index) const {
 }
 
 items* itemmanager::operator[](int index) const {
+	if(index < 0 || index >= getsize()) {
+		throw exceptionhandler("Index out of bounds (itemmanager::operator[])");
+	}
 	return getind(index);
 }
 
@@ -55,10 +58,10 @@ itemmanager& itemmanager::operator+=(items* ptr) {
 }
 
 itemmanager& itemmanager::operator-=(int index) {
-	items* vic = item_arr.getindex(index);
-	if (!vic) {
-		return *this;
+	if(index < 0 || index >= getsize()) {
+		throw exceptionhandler("Index out of bounds (itemmanager::operator-=)");
 	}
+	items* vic = item_arr.getindex(index);
 	delete vic;
 	item_arr.removed(index);
 	return *this;
