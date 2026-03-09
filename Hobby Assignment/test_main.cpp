@@ -173,3 +173,19 @@ TEST_CASE("class template invalid removal throws") {
 	dyn.push_back(1);
 	CHECK_THROWS_AS(dyn.removed(1), exceptionhandler);
 }
+
+TEST_CASE("itemmanager recursive test") {
+	itemmanager manager;
+	CHECK(manager.totalvalue() == doctest::Approx(0.0));
+
+	marketflags flags(true, false, true);
+	manager += new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags);
+	manager += new itemdesc("R8", 0, items::COMMON, items::WELL_WORN, flags);
+
+	srand(123);
+	const double expected = manager.totalvalue();
+
+	srand(123);
+	CHECK(manager.totalvalue() == doctest::Approx(expected));
+}

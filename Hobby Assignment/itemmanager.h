@@ -20,7 +20,11 @@ public:
 	items* operator[](int) const;
 	itemmanager& operator+=(items*);
 	itemmanager& operator-=(int);
+
+	double totalvalue() const;
 private:
 	dynamic<items*> item_arr;
+
+	double totalvalue_rec(int) const;
 };
 

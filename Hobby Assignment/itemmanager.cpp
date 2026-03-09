@@ -75,3 +75,19 @@ void itemmanager::printall() const {
 		}
 	}
 }
+
+double itemmanager::totalvalue() const {
+	return totalvalue_rec(0);
+}
+
+double itemmanager::totalvalue_rec(int index) const {
+	if (index >= getsize()) {
+		return 0.0;
+	}
+	items* it = item_arr.getindex(index);
+	double current = 0;
+	if (it) {
+		current = it->getvalue();
+	}
+	return current + totalvalue_rec(index + 1);
+}
