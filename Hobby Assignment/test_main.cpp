@@ -189,3 +189,54 @@ TEST_CASE("itemmanager recursive test") {
 	srand(123);
 	CHECK(manager.totalvalue() == doctest::Approx(expected));
 }
+
+TEST_CASE("itemmanager seq search empty returns -1") {
+	itemmanager manager;
+	CHECK(manager.seqsearch("Sword") == -1);
+}
+
+TEST_CASE("itemmanager sequential search finds correct index and if isnt found then returns -1") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+	manager += new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemgen("MSMC", 0, items::EPIC, items::FACTORY_NEW, 12, flags);
+	manager += new itemdesc("R8", 0, items::COMMON, items::WELL_WORN, flags);
+
+	CHECK(manager.seqsearch("Sword") == 0);
+	CHECK(manager.seqsearch("MSMC") == 1);
+	CHECK(manager.seqsearch("Shield") == -1);
+}
+
+TEST_CASE("itemmanager bubble sort by name sorts properly") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+
+	manager += new itemdesc("Zen", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemdesc("Aria", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemdesc("Dark", 0, items::EPIC, items::FACTORY_NEW, flags);
+
+	manager.bubblesort();
+	CHECK(manager[0]->getname() == "Aria");
+	CHECK(manager[1]->getname() == "Dark");
+	CHECK(manager[2]->getname() == "Zen");
+
+}
+
+TEST_CASE("itemmanager binary search returns correct index and if not found returns -1") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+	manager += new itemdesc("Zen", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemdesc("Aria", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	manager += new itemdesc("Dark", 0, items::EPIC, items::FACTORY_NEW, flags);
+
+	const int indxA = manager.binsearch("Aria");
+	CHECK(indxA != -1);
+	CHECK(manager[indxA]->getname() == "Aria");
+
+	CHECK(manager.binsearch("Shield") == -1);
+}
+
+TEST_CASE("itemmanager empty binary search returns -1") {
+	itemmanager manager;
+	CHECK(manager.binsearch("Sword") == -1);
+}

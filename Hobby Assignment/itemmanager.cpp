@@ -13,12 +13,12 @@ itemmanager::~itemmanager()
 
 int itemmanager::getsize() const
 {
-	return this->item_arr.size();
+	return static_cast<int>(item_arr.size());
 }
 
 int itemmanager::getcapacity() const
 {
-	return item_arr.cap();
+	return static_cast<int>(item_arr.capacity());
 }
 
 
@@ -39,7 +39,7 @@ void itemmanager::clear() {
 }
 
 items* itemmanager::getind(int index) const {
-	return item_arr.getindex(index);
+	return item_arr.at(index);
 }
 
 items* itemmanager::operator[](int index) const {
@@ -61,19 +61,88 @@ itemmanager& itemmanager::operator-=(int index) {
 	if(index < 0 || index >= getsize()) {
 		throw exceptionhandler("Index out of bounds (itemmanager::operator-=)");
 	}
-	items* vic = item_arr.getindex(index);
-	delete vic;
-	item_arr.removed(index);
+	delete item_arr.at(index);
+	item_arr.erase(item_arr.begin() + index);
 	return *this;
 }
 
 void itemmanager::printall() const {
-	for (int i = 0; i < item_arr.size(); ++i) {
-		if (item_arr.getindex(i)) {
-			cout << i << ". Item value is: " << item_arr.getindex(i)->getvalue() << endl;
-			item_arr.getindex(i)->print();
+	for (int i = 0; i < getsize(); ++i) {
+		if (item_arr.at(i)) {
+			cout << i << ". Item value: " << item_arr.at(i)->getvalue() << endl;
+			item_arr.at(i)->print();
 		}
 	}
+}
+
+int itemmanager::seqsearch(const string& name) const {
+	for (int i = 0; i < getsize(); ++i) {
+		if(item_arr.at(i) && item_arr.at(i)->getname() == name) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+void itemmanager::bubblesort() {
+	const int n = getsize();
+	if (n <= 1) {
+		return;
+	}
+	for (int pass = 0; pass < n - 1; ++pass) {
+		bool swapped = false;
+		for (int i = 0; i < n - 1 - pass; ++i) {
+			string left;
+			if (item_arr.at(i)) {
+				left = item_arr.at(i)->getname();
+			}
+			else {
+				left = "";
+			}
+			string right;
+			if (item_arr.at(i + 1)) {
+				right = item_arr.at(i + 1)->getname();
+			}
+			else {
+				right = "";
+			}
+			if (left > right) {
+				items* tap = item_arr.at(i);
+				item_arr.at(i) = item_arr.at(i + 1);
+				item_arr.at(i + 1) = tap;
+				swapped = true;
+			}
+		}
+		if (!swapped) {
+			break;
+		}
+	}
+}
+
+int itemmanager::binsearch(const string& name) {
+	bubblesort();
+	int low = 0;
+	int high = getsize() - 1;
+	while (low <= high) {
+		const int mid = low + (high - low) / 2;
+		string midname;
+		if (item_arr.at(mid)) {
+			midname = item_arr.at(mid)->getname();
+		}
+		else {
+			midname = "";
+		}
+		if (midname == name) {
+			return mid;
+		}
+		if (midname < name) {
+			low = mid + 1;
+		}
+		else {
+			high = mid - 1;
+		}
+	}
+	return -1;
 }
 
 double itemmanager::totalvalue() const {
@@ -84,7 +153,7 @@ double itemmanager::totalvalue_rec(int index) const {
 	if (index >= getsize()) {
 		return 0.0;
 	}
-	items* it = item_arr.getindex(index);
+	items* it = item_arr.at(index);
 	double current = 0;
 	if (it) {
 		current = it->getvalue();
