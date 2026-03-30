@@ -1,6 +1,7 @@
 #pragma once
 #include "items.h"
 #include"exceptionhandler.h"
+#include"itemslist.h"
 #include<vector>
 #include"dynamic.h"
 #include<string>
@@ -31,8 +32,8 @@ public:
 	void bubblesort();
 	int binsearch(const string&);
 private:
-	vector<items*> item_arr;
+	itemslist item_arr;
 
-	double totalvalue_rec(int) const;
+	double totalvalue_rec(itemslist::iterator) const;
 };
 

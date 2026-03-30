@@ -46,14 +46,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="pricingsystem" Collapsed="true">
-    <Position X="12.25" Y="2.75" Width="1.5" />
+    <Position X="14" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>pricingsystem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="marketflags" Collapsed="true">
-    <Position X="15.75" Y="1.75" Width="1.5" />
+    <Position X="12.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAIAAAAAABAABAAFAIAAAAAgAAAQEAAAAAAAAAAA=</HashCode>
       <FileName>marketflags.h</FileName>
@@ -74,7 +74,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="raritysystem" Collapsed="true">
-    <Position X="14" Y="2.75" Width="1.5" />
+    <Position X="15.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>raritysystem.h</FileName>
@@ -83,7 +83,7 @@
   <Class Name="itemmanager" Collapsed="true">
     <Position X="14" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAIIAkAACEAAAAAQAAAAEAAAAAAAAAAACCQAA=</HashCode>
+      <HashCode>AEgAAAAAIIAkAACEAgAAAQAAAAFAAAABAAAAAACCQAA=</HashCode>
       <FileName>itemmanager.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -99,6 +99,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>exceptionhandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="itemslist" Collapsed="true">
+    <Position X="15.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACCAgAAAAAAAQIEEAAAQAAAAAAAIgAAAAAAAAiA=</HashCode>
+      <FileName>itemslist.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

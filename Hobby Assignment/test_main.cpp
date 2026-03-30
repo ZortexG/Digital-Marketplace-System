@@ -240,3 +240,23 @@ TEST_CASE("itemmanager empty binary search returns -1") {
 	itemmanager manager;
 	CHECK(manager.binsearch("Sword") == -1);
 }
+
+TEST_CASE("itemmanager += insert into empty list increases size") {
+	itemmanager manager;
+	marketflags flags(true, false, true);
+
+	CHECK(manager.getsize() == 0);
+	manager += new itemdesc("Sword", 0, items::RARE, items::MINIMAL_WEAR, flags);
+	CHECK(manager.getsize() == 1);
+	CHECK(manager[0]->getname() == "Sword");
+}
+
+TEST_CASE("itemmanager -= delete non-existent throws") {
+	itemmanager manager;
+	CHECK_THROWS_AS(manager -= 0, exceptionhandler);
+}
+
+TEST_CASE("itemmanager printall on empty list does not throw") {
+	itemmanager manager;
+	CHECK_NOTHROW(manager.printall());
+}

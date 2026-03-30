@@ -34,6 +34,7 @@ jobs:
           "Hobby Assignment/marketplace.cpp" `
           "Hobby Assignment/condtitionsystem.cpp" `
           "Hobby Assignment/items.cpp" `
+          "Hobby Assignment/itemslist.cpp" `
           "Hobby Assignment/inputvalidator.cpp"
     - name: Run tests
       run: ./test_runner

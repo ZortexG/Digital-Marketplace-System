@@ -136,6 +136,7 @@
     <ClCompile Include="itemgen.cpp" />
     <ClCompile Include="itemmanager.cpp" />
     <ClCompile Include="items.cpp" />
+    <ClCompile Include="itemslist.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -163,6 +164,7 @@
     <ClInclude Include="itemgen.h" />
     <ClInclude Include="itemmanager.h" />
     <ClInclude Include="items.h" />
+    <ClInclude Include="itemslist.h" />
     <ClInclude Include="marketflags.h" />
     <ClInclude Include="marketplace.h" />
     <ClInclude Include="pricingsystem.h" />

@@ -18,7 +18,7 @@ int itemmanager::getsize() const
 
 int itemmanager::getcapacity() const
 {
-	return static_cast<int>(item_arr.capacity());
+	return getsize();
 }
 
 
@@ -32,10 +32,7 @@ bool itemmanager::remove(int index) {
 	return getsize() != oldsize;
 }
 void itemmanager::clear() {
-	for (int i=0;i<item_arr.size();i++) {
-		delete item_arr[i];
-	}
-	item_arr.clear();
+	item_arr.clear(true);
 }
 
 items* itemmanager::getind(int index) const {
@@ -58,19 +55,22 @@ itemmanager& itemmanager::operator+=(items* ptr) {
 }
 
 itemmanager& itemmanager::operator-=(int index) {
-	if(index < 0 || index >= getsize()) {
+	if (index < 0 || index >= getsize()) {
 		throw exceptionhandler("Index out of bounds (itemmanager::operator-=)");
 	}
-	delete item_arr.at(index);
-	item_arr.erase(item_arr.begin() + index);
+	if (!item_arr.remove_at(index, true)) {
+		throw exceptionhandler("Index out of bounds (itemmanager::operator-=)");
+	}
 	return *this;
 }
 
 void itemmanager::printall() const {
-	for (int i = 0; i < getsize(); ++i) {
-		if (item_arr.at(i)) {
-			cout << i << ". Item value: " << item_arr.at(i)->getvalue() << endl;
-			item_arr.at(i)->print();
+	int i = 0;
+
+	for (itemslist::iterator it = item_arr.begin(); it.hascurrent(); it.next(), ++i) {
+		if (it.data()) {
+			cout << i << ". Item value: " << it.data()->getvalue() << endl;
+			it.data()->print();
 		}
 	}
 }
@@ -107,9 +107,16 @@ void itemmanager::bubblesort() {
 				right = "";
 			}
 			if (left > right) {
-				items* tap = item_arr.at(i);
-				item_arr.at(i) = item_arr.at(i + 1);
-				item_arr.at(i + 1) = tap;
+				itemslist::iterator it = item_arr.begin();
+				for (int k = 0; k < i; ++k) it.next();
+				items*& a = it.data();
+				it.next();
+				items*& b = it.data();
+
+				items* tmp = a;
+				a = b;
+				b = tmp;
+
 				swapped = true;
 			}
 		}
@@ -149,14 +156,21 @@ double itemmanager::totalvalue() const {
 	return totalvalue_rec(0);
 }
 
-double itemmanager::totalvalue_rec(int index) const {
-	if (index >= getsize()) {
+double itemmanager::totalvalue_rec(itemslist::iterator it) const
+{
+	if (!it.hascurrent()) {
 		return 0.0;
 	}
-	items* it = item_arr.at(index);
-	double current = 0;
-	if (it) {
-		current = it->getvalue();
+
+	items* cur = it.data();
+	double current = 0.0;
+	if (cur) {
+		current = cur->getvalue();
 	}
-	return current + totalvalue_rec(index + 1);
+	else {
+		current = 0.0;
+	}
+
+	it.next();
+	return current + totalvalue_rec(it);
 }
