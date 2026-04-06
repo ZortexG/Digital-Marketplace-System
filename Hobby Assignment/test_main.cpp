@@ -15,6 +15,7 @@
 #include "dynamic.h"
 #include "template.h"
 #include "exceptionhandler.h"
+#include "DataStructures.h"
 #include <sstream>
 #include <iostream>
 #include <string>
