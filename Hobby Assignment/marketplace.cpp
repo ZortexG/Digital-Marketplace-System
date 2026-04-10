@@ -1,6 +1,7 @@
 //Backbone of the code, contains most of the functions
 #include "marketplace.h"
 #include"items.h"
+#include "DataStructure.h"
 
 #include<iostream>
 #include<string>
@@ -67,22 +68,52 @@ void marketplace::menu() //Menu
 void marketplace::extramenu() //Extra menu that can be expanded later
 {
 	int opt;
+	//create objects before loop
+	linkedQueueType<string> orderQueue;
+	linkedStackType<string> historyStack;
 	do {
 		cout << "Extra Functions Menu:" << endl;
 		cout << "1. Calculate Average Price" << endl;
-		cout << " 2. Return to main menu" << endl;
+		cout << "2. View Item" << endl; //can be edited to fit how you want this set up later
+		cout << "3. Buying Item" << endl; 
+		cout << "4. Processing Orders" << endl; //this too
+		cout << "5. View Orders" << endl;
+		cout << " 6. Return to main menu" << endl;
 		cout << "Enter your choice: ";
 		cin >> opt;
 		switch (opt) {
 		case 1:
 			break;
 		case 2:
+			cout << "Enter item name to view: ";
+			cin >> objectName;
+			historyStack.push(objectName); //adding to Stack
+			cout << "Viewing " << objectName << "..." << endl;
+			break;
+		case 3:
+			string object = "Example Sword";
+			orderQueue.addQueue(object);
+			cout << "Order queued for shipping." << endl;
+			break;
+		case 4:
+			while(!orderQueue.isEmptyQueue()){
+				cout << "Processing: " << orderQueue.front() << endl;
+				orderQueue.deleteQueue();
+			break;
+		case 5:
+				if (!historyStack.isEmptyStack()) {
+                    cout << "The last item you looked at was: " << historyStack.top() << endl;
+                } else {
+                    cout << "History is empty." << endl;
+                }
+                break;
+		case 6:
 			break;
 		default:
 			cout << "Invalid option. Please try again." << endl;
 			break;
 		}
-	} while (opt != 2);
+	} while (opt != 6);
 }
 
 void marketplace::additem() {	//Adding new item function
