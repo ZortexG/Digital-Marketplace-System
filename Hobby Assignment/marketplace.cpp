@@ -1,7 +1,6 @@
 //Backbone of the code, contains most of the functions
 #include "marketplace.h"
 #include"items.h"
-#include "DataStructure.h"
 
 #include<iostream>
 #include<string>
@@ -68,52 +67,22 @@ void marketplace::menu() //Menu
 void marketplace::extramenu() //Extra menu that can be expanded later
 {
 	int opt;
-	//create objects before loop
-	linkedQueueType<string> orderQueue;
-	linkedStackType<string> historyStack;
 	do {
 		cout << "Extra Functions Menu:" << endl;
 		cout << "1. Calculate Average Price" << endl;
-		cout << "2. View Item" << endl; //can be edited to fit how you want this set up later
-		cout << "3. Buying Item" << endl; 
-		cout << "4. Processing Orders" << endl; //this too
-		cout << "5. View Orders" << endl;
-		cout << " 6. Return to main menu" << endl;
+		cout << " 2. Return to main menu" << endl;
 		cout << "Enter your choice: ";
 		cin >> opt;
 		switch (opt) {
 		case 1:
 			break;
 		case 2:
-			cout << "Enter item name to view: ";
-			cin >> objectName;
-			historyStack.push(objectName); //adding to Stack
-			cout << "Viewing " << objectName << "..." << endl;
-			break;
-		case 3:
-			string object = "Example Sword";
-			orderQueue.addQueue(object);
-			cout << "Order queued for shipping." << endl;
-			break;
-		case 4:
-			while(!orderQueue.isEmptyQueue()){
-				cout << "Processing: " << orderQueue.front() << endl;
-				orderQueue.deleteQueue();
-			break;
-		case 5:
-				if (!historyStack.isEmptyStack()) {
-                    cout << "The last item you looked at was: " << historyStack.top() << endl;
-                } else {
-                    cout << "History is empty." << endl;
-                }
-                break;
-		case 6:
 			break;
 		default:
 			cout << "Invalid option. Please try again." << endl;
 			break;
 		}
-	} while (opt != 6);
+	} while (opt != 2);
 }
 
 void marketplace::additem() {	//Adding new item function
@@ -186,51 +155,51 @@ void marketplace::displayinventory() //Displaying the inventory with setw functi
 		return;
 	}
 	cout << fixed << setprecision(2);
-	cout << left << setw(20) << "Name" 
-		<< setw(15) << "Rarity" 
-		<< setw(20) << "Condition" 
-		<< setw(15) << "Type" 
+	cout << left << setw(20) << "Name"
+		<< setw(15) << "Rarity"
+		<< setw(20) << "Condition"
+		<< setw(15) << "Type"
 		<< setw(10) << "Price" << endl;
 	for (int i = 0; i < inventory_size; ++i) {
 
-        string raritystr;
+		string raritystr;
 		string conditionstr;
 
-        if (inventory[i].item_rarity == items::COMMON) {
+		if (inventory[i].item_rarity == items::COMMON) {
 			raritystr = "Common";
-        }
-        else if (inventory[i].item_rarity == items::RARE) {
+		}
+		else if (inventory[i].item_rarity == items::RARE) {
 			raritystr = "Rare";
-        }
-        else if (inventory[i].item_rarity == items::EPIC) {
+		}
+		else if (inventory[i].item_rarity == items::EPIC) {
 			raritystr = "Epic";
-        }
-        else if (inventory[i].item_rarity == items::LEGENDARY) {
+		}
+		else if (inventory[i].item_rarity == items::LEGENDARY) {
 			raritystr = "Legendary";
-        }
-        else {
+		}
+		else {
 			raritystr = "Unknown";
-        }
+		}
 
-        
-        if (inventory[i].item_condition == items::FACTORY_NEW) {
+
+		if (inventory[i].item_condition == items::FACTORY_NEW) {
 			conditionstr = "Factory New";
-        }
-        else if (inventory[i].item_condition == items::MINIMAL_WEAR) {
+		}
+		else if (inventory[i].item_condition == items::MINIMAL_WEAR) {
 			conditionstr = "Minimal Wear";
-        }
-        else if (inventory[i].item_condition == items::FIELD_TESTED) {
+		}
+		else if (inventory[i].item_condition == items::FIELD_TESTED) {
 			conditionstr = "Field Tested";
-        }
-        else if (inventory[i].item_condition == items::WELL_WORN) {
+		}
+		else if (inventory[i].item_condition == items::WELL_WORN) {
 			conditionstr = "Well Worn";
-        }
-        else if (inventory[i].item_condition == items::BATTLE_SCARRED) {
+		}
+		else if (inventory[i].item_condition == items::BATTLE_SCARRED) {
 			conditionstr = "Battle Scarred";
-        }
-        else {
+		}
+		else {
 			conditionstr = "Unknown";
-        }
+		}
 		cout << left << setw(20) << inventory[i].name
 			<< setw(15) << raritystr
 			<< setw(20) << conditionstr
@@ -248,7 +217,7 @@ void marketplace::tracksales() //tracking sales
 	cout << "Total value of items in inventory: $" << totalvalue << endl;
 }
 void marketplace::savereport() { //Saving report to a text file
-	if(inventory_size == 0) {
+	if (inventory_size == 0) {
 		cout << "The inventory is empty. No report to save." << endl;
 		return;
 	}
@@ -282,7 +251,7 @@ void marketplace::savereport() { //Saving report to a text file
 		else {
 			raritystr = "Unknown";
 		}
-		
+
 		if (inventory[i].item_condition == items::FACTORY_NEW) {
 			conditionstr = "Factory New";
 		}

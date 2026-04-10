@@ -33,8 +33,7 @@ jobs:
           "Hobby Assignment/pricingsystem.cpp" `
           "Hobby Assignment/marketplace.cpp" `
           "Hobby Assignment/condtitionsystem.cpp" `
-          "Hobby Assignment/items.cpp" ` 
-          "Hobby Assignment/DataStructures.cpp" ` 
+          "Hobby Assignment/items.cpp" `
           "Hobby Assignment/itemslist.cpp" `
           "Hobby Assignment/inputvalidator.cpp"
     - name: Run tests

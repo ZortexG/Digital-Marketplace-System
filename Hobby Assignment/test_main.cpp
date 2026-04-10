@@ -15,7 +15,6 @@
 #include "dynamic.h"
 #include "template.h"
 #include "exceptionhandler.h"
-#include "DataStructures.h"
 #include <sstream>
 #include <iostream>
 #include <string>
@@ -164,7 +163,7 @@ TEST_CASE("class template remove shifts") {
 	dyn.push_back(30);
 	CHECK(dyn.removed(1) == true);
 	CHECK(dyn.size() == 2);
-	CHECK(dyn.getindex(0) == 10);	
+	CHECK(dyn.getindex(0) == 10);
 	CHECK(dyn.getindex(1) == 30);
 }
 

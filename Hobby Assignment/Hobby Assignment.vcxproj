@@ -125,7 +125,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="condtitionsystem.cpp" />
-    <ClCompile Include="DataStructures.cpp" />
     <ClCompile Include="doctestmain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -157,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="condtitionsystem.h" />
-    <ClInclude Include="DataStructures.h" />
     <ClInclude Include="doctest.h" />
     <ClInclude Include="dynamic.h" />
     <ClInclude Include="exceptionhandler.h" />
