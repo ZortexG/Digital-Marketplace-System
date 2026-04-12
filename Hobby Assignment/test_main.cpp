@@ -260,3 +260,61 @@ TEST_CASE("itemmanager printall on empty list does not throw") {
 	itemmanager manager;
 	CHECK_NOTHROW(manager.printall());
 }
+
+// --- pricingsystem std::map tests ---
+
+TEST_CASE("pricingsystem map lookup returns correct rarity multipliers") {
+	pricingsystem ps;
+	CHECK(ps.getRarityMultiplier("Common") == doctest::Approx(1.0));
+	CHECK(ps.getRarityMultiplier("Rare") == doctest::Approx(1.2));
+	CHECK(ps.getRarityMultiplier("Epic") == doctest::Approx(1.5));
+	CHECK(ps.getRarityMultiplier("Legendary") == doctest::Approx(2.0));
+}
+
+TEST_CASE("pricingsystem map lookup returns correct condition multipliers") {
+	pricingsystem ps;
+	CHECK(ps.getConditionMultiplier("Battle-Scarred") == doctest::Approx(0.5));
+	CHECK(ps.getConditionMultiplier("Well-Worn") == doctest::Approx(0.75));
+	CHECK(ps.getConditionMultiplier("Field-Tested") == doctest::Approx(1.0));
+	CHECK(ps.getConditionMultiplier("Minimal Wear") == doctest::Approx(1.25));
+	CHECK(ps.getConditionMultiplier("Factory New") == doctest::Approx(1.5));
+}
+
+TEST_CASE("pricingsystem map lookup nonexistent rarity key returns default 1.0") {
+	pricingsystem ps;
+	CHECK(ps.getRarityMultiplier("Mythic") == doctest::Approx(1.0));
+	CHECK(ps.getRarityMultiplier("") == doctest::Approx(1.0));
+}
+
+TEST_CASE("pricingsystem map lookup nonexistent condition key returns default 1.0") {
+	pricingsystem ps;
+	CHECK(ps.getConditionMultiplier("Brand New") == doctest::Approx(1.0));
+	CHECK(ps.getConditionMultiplier("") == doctest::Approx(1.0));
+}
+
+TEST_CASE("pricingsystem map delete removes rarity entry") {
+	pricingsystem ps;
+	ps.removeRarity("Legendary");
+	// After deletion, lookup falls back to default 1.0
+	CHECK(ps.getRarityMultiplier("Legendary") == doctest::Approx(1.0));
+	// Other entries are unaffected
+	CHECK(ps.getRarityMultiplier("Rare") == doctest::Approx(1.2));
+}
+
+TEST_CASE("pricingsystem map delete removes condition entry") {
+	pricingsystem ps;
+	ps.removeCondition("Factory New");
+	CHECK(ps.getConditionMultiplier("Factory New") == doctest::Approx(1.0));
+	CHECK(ps.getConditionMultiplier("Minimal Wear") == doctest::Approx(1.25));
+}
+
+TEST_CASE("pricingsystem map delete nonexistent key does not throw") {
+	pricingsystem ps;
+	CHECK_NOTHROW(ps.removeRarity("Mythic"));
+	CHECK_NOTHROW(ps.removeCondition("Brand New"));
+}
+
+TEST_CASE("pricingsystem map iterate printMultipliers does not throw") {
+	pricingsystem ps;
+	CHECK_NOTHROW(ps.printMultipliers());
+}
