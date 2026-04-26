@@ -15,11 +15,15 @@
 #include "dynamic.h"
 #include "template.h"
 #include "exceptionhandler.h"
+#include "HttpClient.h"
+#include "markethttpclient.h"
+#include "json.hpp"
 #include <sstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 using namespace std;
+using json = nlohmann::json;
 
 #ifdef _DEBUG
 struct CRTCtorLeakCheck
