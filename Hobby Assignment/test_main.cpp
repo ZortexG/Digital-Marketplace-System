@@ -318,3 +318,15 @@ TEST_CASE("pricingsystem map iterate printMultipliers does not throw") {
 	pricingsystem ps;
 	CHECK_NOTHROW(ps.printMultipliers());
 }
+
+TEST_CASE("Currency API GET works")
+{
+    MarketHTTPClient client;
+
+    REQUIRE(client.Connect("api.macomb.io"));
+    REQUIRE(client.Get("/currency", {{"limit","3"}}));
+
+    json j = json::parse(client.GetResponse());
+
+    REQUIRE(j.contains("currencies"));
+}
