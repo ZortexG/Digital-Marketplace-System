@@ -15,11 +15,15 @@
 #include "dynamic.h"
 #include "template.h"
 #include "exceptionhandler.h"
+#include "HttpClient.h"
+#include "markethttpclient.h"
+#include "json.hpp"
 #include <sstream>
 #include <iostream>
 #include <string>
 #include <cstdlib>
 using namespace std;
+using json = nlohmann::json;
 
 #ifdef _DEBUG
 struct CRTCtorLeakCheck
@@ -317,4 +321,16 @@ TEST_CASE("pricingsystem map delete nonexistent key does not throw") {
 TEST_CASE("pricingsystem map iterate printMultipliers does not throw") {
 	pricingsystem ps;
 	CHECK_NOTHROW(ps.printMultipliers());
+}
+
+TEST_CASE("Currency API GET works")
+{
+    MarketHTTPClient client;
+
+    REQUIRE(client.Connect("api.macomb.io"));
+    REQUIRE(client.Get("/currency", {{"limit","3"}}));
+
+    json j = json::parse(client.GetResponse());
+
+    REQUIRE(j.contains("currencies"));
 }

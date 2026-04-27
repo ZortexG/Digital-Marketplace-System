@@ -1,5 +1,6 @@
 #include "marketplace.h"
 #include "items.h"
+#include "currencyapi.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -13,6 +14,8 @@ using namespace std;
 #else
 
 int main() {	//Main function, calling necessary functions and done :)
+	
+	runCurrencyAPI(); // Run the currency API demonstration
 	marketplace market;
 	market.introbanner();
 	market.menu();
